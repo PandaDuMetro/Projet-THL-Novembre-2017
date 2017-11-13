@@ -14,7 +14,7 @@
 
 
 %token NUM
-%token VAR TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT EXP ABS
+%token VAR TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -55,8 +55,11 @@ expr:
 
      | EXP '(' expr ')'  { $$ = exp($3);  printf("exp(%g) = %g\n", $3, $$); }
      | SQRT '(' expr ')' { if($3> 0) { $$= sqrt($3); printf("sqrt(%g) = %g\n", $3, $$); } else{ $$=-1; printf("Square root needs a positive value");}}
+     | CBRT '(' expr ')' { if($3> 0) { $$= cbrt($3); printf("cbrt(%g) = %g\n", $3, $$); } else{ $$=-1; printf("cubic root needs a positive value");}}
      | LOG '(' expr ')'  { if($3> 0) { $$= log($3); printf("log(%g) = %g\n", $3, $$); } else{ $$=-1; printf("Log needs a positive value");}}
      | ABS '(' expr ')'  { $$= sqrt(pow($3,2)); printf("abs(%g) = %g\n", $3,$$); }
+
+
 
 %%
 

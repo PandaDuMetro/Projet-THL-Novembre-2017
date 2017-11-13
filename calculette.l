@@ -21,6 +21,7 @@ tanh|Tanh|TANH { return TANH; }
 
 exp|Exp|EXP {return EXP; }
 sqrt|Sqrt|SQRT {return SQRT; }
+cbrt|Cbrt|CBRT {return CBRT; }
 log|Log|LOG {return LOG; }
 abs|Abs|ABS {return ABS; }
 

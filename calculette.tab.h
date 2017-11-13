@@ -65,8 +65,9 @@ extern int yydebug;
     TANH = 268,
     LOG = 269,
     SQRT = 270,
-    EXP = 271,
-    ABS = 272
+    CBRT = 271,
+    EXP = 272,
+    ABS = 273
   };
 #endif
 
