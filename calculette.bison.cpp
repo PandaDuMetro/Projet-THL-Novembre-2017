@@ -73,17 +73,14 @@
   using namespace std;
   extern int yylex ();
   extern char* yytext;
-
-  int yyerror(char *s)
-  { printf("%s\n", s); }
-
   double varx = 0.;
 
+  int yyerror(char *s) { printf("%s\n", s); }
 
   map<string, double> variables;
 
 
-#line 87 "calculette.tab.c" /* yacc.c:339  */
+#line 84 "calculette.bison.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -102,9 +99,9 @@
 #endif
 
 /* In a future release of Bison, this section will be replaced
-   by #include "calculette.tab.h".  */
-#ifndef YY_YY_CALCULETTE_TAB_H_INCLUDED
-# define YY_YY_CALCULETTE_TAB_H_INCLUDED
+   by #include "calculette.bison.hpp".  */
+#ifndef YY_YY_CALCULETTE_BISON_HPP_INCLUDED
+# define YY_YY_CALCULETTE_BISON_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -142,12 +139,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 23 "calculette.y" /* yacc.c:355  */
+#line 20 "calculette.y" /* yacc.c:355  */
 
   double dval;
   char sval[40];
 
-#line 151 "calculette.tab.c" /* yacc.c:355  */
+#line 148 "calculette.bison.cpp" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -160,11 +157,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_CALCULETTE_TAB_H_INCLUDED  */
+#endif /* !YY_YY_CALCULETTE_BISON_HPP_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 168 "calculette.tab.c" /* yacc.c:358  */
+#line 165 "calculette.bison.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -463,9 +460,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    38,    38,    39,    42,    43,    44,    48,    49,    52,
-      53,    54,    55,    56,    58,    59,    62,    63,    64,    65,
-      66,    67,    68,    69,    70,    73,    74,    75,    76,    77
+       0,    35,    35,    36,    39,    40,    41,    45,    46,    47,
+      48,    49,    50,    51,    53,    54,    57,    58,    59,    60,
+      61,    62,    63,    64,    65,    68,    69,    70,    71,    72
 };
 #endif
 
@@ -1305,157 +1302,157 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 43 "calculette.y" /* yacc.c:1646  */
+#line 40 "calculette.y" /* yacc.c:1646  */
     { printf("\nResult : %g\n", (yyvsp[-1].dval)); }
-#line 1311 "calculette.tab.c" /* yacc.c:1646  */
+#line 1308 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 44 "calculette.y" /* yacc.c:1646  */
-    { variables[(yyvsp[-2].sval)] = (yyvsp[0].dval); }
-#line 1317 "calculette.tab.c" /* yacc.c:1646  */
+#line 41 "calculette.y" /* yacc.c:1646  */
+    { varx = (yyvsp[0].dval); }
+#line 1314 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 48 "calculette.y" /* yacc.c:1646  */
+#line 45 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[0].dval);  /* printf("%g ", $1); */ }
-#line 1323 "calculette.tab.c" /* yacc.c:1646  */
+#line 1320 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 49 "calculette.y" /* yacc.c:1646  */
+#line 46 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = variables[(yyvsp[0].sval)]  ; /*printf("VAR:%s\n", $1);*/ }
-#line 1329 "calculette.tab.c" /* yacc.c:1646  */
+#line 1326 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 52 "calculette.y" /* yacc.c:1646  */
+#line 47 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-2].dval) + (yyvsp[0].dval);  printf("%g + %g = %g\n", (yyvsp[-2].dval), (yyvsp[0].dval), (yyval.dval)); }
-#line 1335 "calculette.tab.c" /* yacc.c:1646  */
+#line 1332 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 53 "calculette.y" /* yacc.c:1646  */
+#line 48 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-2].dval) - (yyvsp[0].dval);  printf("%g - %g = %g\n", (yyvsp[-2].dval), (yyvsp[0].dval), (yyval.dval)); }
-#line 1341 "calculette.tab.c" /* yacc.c:1646  */
+#line 1338 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 54 "calculette.y" /* yacc.c:1646  */
+#line 49 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval);  printf("%g * %g = %g\n", (yyvsp[-2].dval), (yyvsp[0].dval), (yyval.dval)); }
-#line 1347 "calculette.tab.c" /* yacc.c:1646  */
+#line 1344 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 55 "calculette.y" /* yacc.c:1646  */
+#line 50 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-2].dval) / (yyvsp[0].dval);  printf("%g / %g = %g\n", (yyvsp[-2].dval), (yyvsp[0].dval), (yyval.dval)); }
-#line 1353 "calculette.tab.c" /* yacc.c:1646  */
+#line 1350 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 56 "calculette.y" /* yacc.c:1646  */
+#line 51 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = pow((yyvsp[-2].dval),(yyvsp[0].dval)); printf("%g ^ %g = %g\n", (yyvsp[-2].dval), (yyvsp[0].dval), (yyval.dval)); }
-#line 1359 "calculette.tab.c" /* yacc.c:1646  */
+#line 1356 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 58 "calculette.y" /* yacc.c:1646  */
+#line 53 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-1].dval);  }
-#line 1365 "calculette.tab.c" /* yacc.c:1646  */
+#line 1362 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 59 "calculette.y" /* yacc.c:1646  */
+#line 54 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = -(yyvsp[0].dval);}
-#line 1371 "calculette.tab.c" /* yacc.c:1646  */
+#line 1368 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 62 "calculette.y" /* yacc.c:1646  */
+#line 57 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = sin((yyvsp[-1].dval));  printf("sin(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1377 "calculette.tab.c" /* yacc.c:1646  */
+#line 1374 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 63 "calculette.y" /* yacc.c:1646  */
+#line 58 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = cos((yyvsp[-1].dval));  printf("cos(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1383 "calculette.tab.c" /* yacc.c:1646  */
+#line 1380 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 64 "calculette.y" /* yacc.c:1646  */
+#line 59 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = tan((yyvsp[-1].dval));  printf("tan(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1389 "calculette.tab.c" /* yacc.c:1646  */
+#line 1386 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 65 "calculette.y" /* yacc.c:1646  */
+#line 60 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = asin((yyvsp[-1].dval)); printf("asin(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1395 "calculette.tab.c" /* yacc.c:1646  */
+#line 1392 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 66 "calculette.y" /* yacc.c:1646  */
+#line 61 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = acos((yyvsp[-1].dval)); printf("acos(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1401 "calculette.tab.c" /* yacc.c:1646  */
+#line 1398 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 67 "calculette.y" /* yacc.c:1646  */
+#line 62 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = atan((yyvsp[-1].dval)); printf("atan(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1407 "calculette.tab.c" /* yacc.c:1646  */
+#line 1404 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 68 "calculette.y" /* yacc.c:1646  */
+#line 63 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = sinh((yyvsp[-1].dval)); printf("sinh(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval));}
-#line 1413 "calculette.tab.c" /* yacc.c:1646  */
+#line 1410 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 69 "calculette.y" /* yacc.c:1646  */
+#line 64 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = cosh((yyvsp[-1].dval)); printf("cosh(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval));}
-#line 1419 "calculette.tab.c" /* yacc.c:1646  */
+#line 1416 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 70 "calculette.y" /* yacc.c:1646  */
+#line 65 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = tanh((yyvsp[-1].dval)); printf("tanh(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval));}
-#line 1425 "calculette.tab.c" /* yacc.c:1646  */
+#line 1422 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 73 "calculette.y" /* yacc.c:1646  */
+#line 68 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = exp((yyvsp[-1].dval));  printf("exp(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); }
-#line 1431 "calculette.tab.c" /* yacc.c:1646  */
+#line 1428 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 74 "calculette.y" /* yacc.c:1646  */
+#line 69 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { (yyval.dval)= sqrt((yyvsp[-1].dval)); printf("sqrt(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); } else{ (yyval.dval)=-1; printf("Square root needs a positive value");}}
-#line 1437 "calculette.tab.c" /* yacc.c:1646  */
+#line 1434 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 75 "calculette.y" /* yacc.c:1646  */
+#line 70 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { (yyval.dval)= cbrt((yyvsp[-1].dval)); printf("cbrt(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); } else{ (yyval.dval)=-1; printf("cubic root needs a positive value");}}
-#line 1443 "calculette.tab.c" /* yacc.c:1646  */
+#line 1440 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 76 "calculette.y" /* yacc.c:1646  */
+#line 71 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { (yyval.dval)= log((yyvsp[-1].dval)); printf("log(%g) = %g\n", (yyvsp[-1].dval), (yyval.dval)); } else{ (yyval.dval)=-1; printf("Log needs a positive value");}}
-#line 1449 "calculette.tab.c" /* yacc.c:1646  */
+#line 1446 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 77 "calculette.y" /* yacc.c:1646  */
+#line 72 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval)= sqrt(pow((yyvsp[-1].dval),2)); printf("abs(%g) = %g\n", (yyvsp[-1].dval),(yyval.dval)); }
-#line 1455 "calculette.tab.c" /* yacc.c:1646  */
+#line 1452 "calculette.bison.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1459 "calculette.tab.c" /* yacc.c:1646  */
+#line 1456 "calculette.bison.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1683,9 +1680,12 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 81 "calculette.y" /* yacc.c:1906  */
+#line 76 "calculette.y" /* yacc.c:1906  */
 
 
+yyerror(char *s) {          
+    printf("%s\n", s);
+}
 
 int main(void) {
     yyparse();            

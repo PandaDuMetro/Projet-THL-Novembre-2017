@@ -1,6 +1,6 @@
-#line 2 "calculette.c"
+#line 2 "calculette.lex.cpp"
 
-#line 4 "calculette.c"
+#line 4 "calculette.lex.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -376,8 +376,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 27
-#define YY_END_OF_BUFFER 28
+#define YY_NUM_RULES 26
+#define YY_END_OF_BUFFER 27
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -387,8 +387,8 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[143] =
     {   0,
-        0,    0,   28,   26,   19,   25,    1,   17,   17,   17,
-       17,   17,   17,   17,   17,   24,   17,   17,   17,   17,
+        0,    0,   27,   25,   26,   24,    1,   17,   17,   17,
+       17,   17,   17,   17,   17,   23,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,    1,    1,    0,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   16,   17,   17,   17,
@@ -572,7 +572,7 @@ char *yytext;
   using namespace std;
   
   #include "calculette.bison.hpp" 
-#line 576 "calculette.c"
+#line 576 "calculette.lex.cpp"
 
 #define INITIAL 0
 
@@ -793,7 +793,7 @@ YY_DECL
 #line 12 "calculette.l"
 
 
-#line 797 "calculette.c"
+#line 797 "calculette.lex.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -928,7 +928,7 @@ YY_RULE_SETUP
 case 16:
 YY_RULE_SETUP
 #line 33 "calculette.l"
-{  yylval.dval = 3.14159265359; return NUM; }
+{  yylval = 3.14159265359; return NUM; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
@@ -938,55 +938,49 @@ YY_RULE_SETUP
 case 18:
 YY_RULE_SETUP
 #line 35 "calculette.l"
-{  yylval.dval = 1.; return NUM; }
+{  yylval.dval = 1.; return NUM; }\n     {  return '\n'; }
 	YY_BREAK
 case 19:
-/* rule 19 can match eol */
 YY_RULE_SETUP
 #line 36 "calculette.l"
-{  return '\n'; }
+{ return '+'; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 37 "calculette.l"
-{ return '+'; }
+{ return '*'; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 38 "calculette.l"
-{ return '*'; }
+{ return '-'; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 39 "calculette.l"
-{ return '-'; }
+{ return '/'; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 40 "calculette.l"
-{ return '/'; }
+{return '^'; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 41 "calculette.l"
-{return '^'; }
+{}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 42 "calculette.l"
-{}
+{  return yytext[0]; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 43 "calculette.l"
-{  return yytext[0]; }
-	YY_BREAK
-case 27:
-YY_RULE_SETUP
-#line 45 "calculette.l"
+#line 44 "calculette.l"
 ECHO;
 	YY_BREAK
-#line 990 "calculette.c"
+#line 984 "calculette.lex.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1987,7 +1981,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 45 "calculette.l"
+#line 44 "calculette.l"
 
 
 

@@ -2,11 +2,16 @@
   #include <stdio.h>
   #include <stdlib.h>
   #include "calculette.tab.h"
+
+  #include <string>
+  using namespace std;
+  
+  #include "calculette.bison.hpp" 
 %}
 
 %%
 
-[0-9]+(\.[0-9]*)?([Ee][0-9]+)? {  yylval = atof(yytext); return NUM; }
+[0-9]+(\.[0-9]*)?([Ee][0-9]+)? {  yylval.dval = atof(yytext); return NUM; }
 
 sin|sinus|Sin|Sinus|SINUS|SIN {  return SIN; }
 cos|cosinus|Cos|Cosinus|COSINUS|COS {  return COS; }
@@ -25,9 +30,9 @@ cbrt|Cbrt|CBRT {return CBRT; }
 log|Log|LOG {return LOG; }
 abs|Abs|ABS {return ABS; }
 
-Pi|PI|pi    {  yylval = 3.14159265359; return NUM; }
-x|X { return VAR; }
-un     {  yylval = 1.; return NUM; }
+Pi|PI|pi    {  yylval.dval = 3.14159265359; return NUM; }
+[a-zA-Z_][a-zA-Z_0-9]* { strcpy( yylval.sval, yytext); return VAR; }
+un     {  yylval.dval = 1.; return NUM; }
 \n     {  return '\n'; }
 plus   { return '+'; }
 fois   { return '*'; }

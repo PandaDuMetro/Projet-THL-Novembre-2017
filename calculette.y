@@ -2,19 +2,34 @@
   #include <stdio.h>
   #include <stdlib.h>
   #include <math.h>    
+  #include <map>
+  #include <string>
+
+  using namespace std;
   extern int yylex ();
+  extern char* yytext;
+
+  int yyerror(char *s)
+  { printf("%s\n", s); }
 
   double varx = 0.;
+
+
+  map<string, double> variables;
+
 %}
 
-%code requires
-  {
-    #define YYSTYPE double
-  }
+%union
+{
+  double dval;
+  char sval[40];
+}
 
 
-%token NUM
-%token VAR TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS
+%token <dval> NUM
+%token <sval> VAR 
+%type <dval> expr
+%token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -26,12 +41,14 @@ program: /* empty */
 
 line: '\n'       
   | expr '\n' { printf("\nResult : %g\n", $1); }  
-  | VAR '=' expr { varx = $3; }
-  ;
+  | VAR '=' expr   { variables[$1] = $3; } 
+    ;
 
 expr:
      NUM                 { $$ = $1;  /* printf("%g ", $1); */ } 
-   | VAR         { $$ = varx; }
+     | VAR               { $$ = variables[$1]  ; /*printf("VAR:%s\n", $1);*/ }
+
+
      | expr '+' expr     { $$ = $1 + $3;  printf("%g + %g = %g\n", $1, $3, $$); }
      | expr '-' expr     { $$ = $1 - $3;  printf("%g - %g = %g\n", $1, $3, $$); }       
      | expr '*' expr     { $$ = $1 * $3;  printf("%g * %g = %g\n", $1, $3, $$); }
@@ -63,9 +80,6 @@ expr:
 
 %%
 
-yyerror(char *s) {          
-    printf("%s\n", s);
-}
 
 int main(void) {
     yyparse();            
