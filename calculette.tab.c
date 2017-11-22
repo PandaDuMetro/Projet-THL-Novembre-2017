@@ -66,6 +66,7 @@
 
   #include <stdio.h>
   #include <stdlib.h>
+  #include <iostream>
   #include <math.h>    
   #include <map>
   #include <vector>
@@ -91,7 +92,7 @@
   vector<float> pile;
 
 
-#line 95 "calculette.tab.c" /* yacc.c:339  */
+#line 96 "calculette.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -157,12 +158,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 31 "calculette.y" /* yacc.c:355  */
+#line 32 "calculette.y" /* yacc.c:355  */
 
   double dval;
   char sval[40];
 
-#line 166 "calculette.tab.c" /* yacc.c:355  */
+#line 167 "calculette.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -179,7 +180,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 183 "calculette.tab.c" /* yacc.c:358  */
+#line 184 "calculette.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -479,10 +480,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    47,    47,    48,    51,    52,    53,    54,    59,    60,
-      63,    64,    65,    66,    67,    69,    70,    74,    75,    76,
-      77,    78,    79,    80,    81,    82,    85,    86,    87,    88,
-      89
+       0,    48,    48,    49,    52,    53,    54,    55,    60,    61,
+      64,    65,    66,    67,    68,    70,    71,    75,    76,    77,
+      78,    79,    80,    81,    82,    83,    86,    87,    88,    89,
+      90
 };
 #endif
 
@@ -1328,163 +1329,163 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 52 "calculette.y" /* yacc.c:1646  */
+#line 53 "calculette.y" /* yacc.c:1646  */
     { printf("\nResult : %g\n", (yyvsp[-1].dval)); }
-#line 1334 "calculette.tab.c" /* yacc.c:1646  */
+#line 1335 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 53 "calculette.y" /* yacc.c:1646  */
+#line 54 "calculette.y" /* yacc.c:1646  */
     {functions[(yyvsp[-5].sval)] = postfixed; postfixed.clear();}
-#line 1340 "calculette.tab.c" /* yacc.c:1646  */
+#line 1341 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 54 "calculette.y" /* yacc.c:1646  */
+#line 55 "calculette.y" /* yacc.c:1646  */
     { eval((yyvsp[-1].sval));}
-#line 1346 "calculette.tab.c" /* yacc.c:1646  */
+#line 1347 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 59 "calculette.y" /* yacc.c:1646  */
+#line 60 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(NUM,(yyvsp[0].dval))); }
-#line 1352 "calculette.tab.c" /* yacc.c:1646  */
+#line 1353 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 60 "calculette.y" /* yacc.c:1646  */
+#line 61 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = variables[(yyvsp[0].sval)]; postfixed.push_back(make_pair(VAR,0));}
-#line 1358 "calculette.tab.c" /* yacc.c:1646  */
+#line 1359 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 63 "calculette.y" /* yacc.c:1646  */
+#line 64 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(PLUS,0)); }
-#line 1364 "calculette.tab.c" /* yacc.c:1646  */
+#line 1365 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 64 "calculette.y" /* yacc.c:1646  */
+#line 65 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(MOINS,0));  }
-#line 1370 "calculette.tab.c" /* yacc.c:1646  */
+#line 1371 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 65 "calculette.y" /* yacc.c:1646  */
+#line 66 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(FOIS,0));  }
-#line 1376 "calculette.tab.c" /* yacc.c:1646  */
+#line 1377 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 66 "calculette.y" /* yacc.c:1646  */
+#line 67 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(DIVISE,0));  }
-#line 1382 "calculette.tab.c" /* yacc.c:1646  */
+#line 1383 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 67 "calculette.y" /* yacc.c:1646  */
+#line 68 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(POW,0));  }
-#line 1388 "calculette.tab.c" /* yacc.c:1646  */
+#line 1389 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 69 "calculette.y" /* yacc.c:1646  */
+#line 70 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = (yyvsp[-1].dval);  }
-#line 1394 "calculette.tab.c" /* yacc.c:1646  */
+#line 1395 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 70 "calculette.y" /* yacc.c:1646  */
+#line 71 "calculette.y" /* yacc.c:1646  */
     { (yyval.dval) = -(yyvsp[0].dval);}
-#line 1400 "calculette.tab.c" /* yacc.c:1646  */
+#line 1401 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 74 "calculette.y" /* yacc.c:1646  */
+#line 75 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(SIN,0)); }
-#line 1406 "calculette.tab.c" /* yacc.c:1646  */
+#line 1407 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 75 "calculette.y" /* yacc.c:1646  */
+#line 76 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(COS,0)); }
-#line 1412 "calculette.tab.c" /* yacc.c:1646  */
+#line 1413 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 76 "calculette.y" /* yacc.c:1646  */
+#line 77 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(TAN,0)); }
-#line 1418 "calculette.tab.c" /* yacc.c:1646  */
+#line 1419 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 77 "calculette.y" /* yacc.c:1646  */
+#line 78 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(ASIN,0)); }
-#line 1424 "calculette.tab.c" /* yacc.c:1646  */
+#line 1425 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 78 "calculette.y" /* yacc.c:1646  */
+#line 79 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(ACOS,0)); }
-#line 1430 "calculette.tab.c" /* yacc.c:1646  */
+#line 1431 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 79 "calculette.y" /* yacc.c:1646  */
+#line 80 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(ATAN,0)); }
-#line 1436 "calculette.tab.c" /* yacc.c:1646  */
+#line 1437 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 80 "calculette.y" /* yacc.c:1646  */
+#line 81 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(SINH,0)); }
-#line 1442 "calculette.tab.c" /* yacc.c:1646  */
+#line 1443 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 81 "calculette.y" /* yacc.c:1646  */
+#line 82 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(COSH,0)); }
-#line 1448 "calculette.tab.c" /* yacc.c:1646  */
+#line 1449 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 82 "calculette.y" /* yacc.c:1646  */
+#line 83 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(TANH,0)); }
-#line 1454 "calculette.tab.c" /* yacc.c:1646  */
+#line 1455 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 85 "calculette.y" /* yacc.c:1646  */
+#line 86 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(EXP,0));}
-#line 1460 "calculette.tab.c" /* yacc.c:1646  */
+#line 1461 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 86 "calculette.y" /* yacc.c:1646  */
+#line 87 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(SQRT,0)); } else{ (yyval.dval)=-1; printf("Square root needs a positive value");}}
-#line 1466 "calculette.tab.c" /* yacc.c:1646  */
+#line 1467 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 87 "calculette.y" /* yacc.c:1646  */
+#line 88 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(CBRT,0)); } else{ (yyval.dval)=-1; printf("cubic root needs a positive value");}}
-#line 1472 "calculette.tab.c" /* yacc.c:1646  */
+#line 1473 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 88 "calculette.y" /* yacc.c:1646  */
+#line 89 "calculette.y" /* yacc.c:1646  */
     { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(LOG,0)); } else{ (yyval.dval)=-1; printf("Log needs a positive value");}}
-#line 1478 "calculette.tab.c" /* yacc.c:1646  */
+#line 1479 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 89 "calculette.y" /* yacc.c:1646  */
+#line 90 "calculette.y" /* yacc.c:1646  */
     { postfixed.push_back(make_pair(ABS,0)); }
-#line 1484 "calculette.tab.c" /* yacc.c:1646  */
+#line 1485 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1488 "calculette.tab.c" /* yacc.c:1646  */
+#line 1489 "calculette.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1712,7 +1713,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 94 "calculette.y" /* yacc.c:1906  */
+#line 95 "calculette.y" /* yacc.c:1906  */
 
 
 float depiler_operande(int func, int i, string name){
@@ -1744,6 +1745,9 @@ float depiler_operande(int func, int i, string name){
       v2 = pile.back();
       pile.pop_back();
       return(pow(v2,v1));
+      break;
+    case ABS:
+      return(sqrt(v1*v1));
       break;
     case SIN:
       return(sin(v1));
@@ -1786,8 +1790,10 @@ float depiler_operande(int func, int i, string name){
 }
 
 void eval(string fonc){
-  if(functions.count("f")>0){
-    printf("KOU²");
+  if(functions.count(fonc)>0){
+    for(auto i:functions[fonc]){
+      cout << i.first << "|" << i.second << endl ;
+    }
   }
 
 }

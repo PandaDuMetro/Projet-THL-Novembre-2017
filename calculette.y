@@ -1,6 +1,7 @@
 %{
   #include <stdio.h>
   #include <stdlib.h>
+  #include <iostream>
   #include <math.h>    
   #include <map>
   #include <vector>
@@ -123,6 +124,9 @@ float depiler_operande(int func, int i, string name){
       pile.pop_back();
       return(pow(v2,v1));
       break;
+    case ABS:
+      return(sqrt(v1*v1));
+      break;
     case SIN:
       return(sin(v1));
       break;
@@ -164,8 +168,10 @@ float depiler_operande(int func, int i, string name){
 }
 
 void eval(string fonc){
-  if(functions.count("f")>0){
-    printf("KOU²");
+  if(functions.count(fonc)>0){
+    for(auto i:functions[fonc]){
+      cout << i.first << "|" << i.second << endl ;
+    }
   }
 
 }
