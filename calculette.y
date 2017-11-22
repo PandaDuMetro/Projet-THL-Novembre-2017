@@ -16,6 +16,8 @@
 
   double varx = 0.;
 
+  void eval(string);
+
 
   map<string, double> variables;
 
@@ -49,7 +51,7 @@ program: /* empty */
 line: '\n'       
   | expr '\n' { printf("\nResult : %g\n", $1); }  
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
-  | PLOT '(' VAR ')' { printf("coucou"); /*eval($3)*/}
+  | PLOT '(' VAR ')' { eval($3);}
     ;
   
 
@@ -159,6 +161,13 @@ float depiler_operande(int func, int i, string name){
       break;
 
   }
+}
+
+void eval(string fonc){
+  if(functions.count("f")>0){
+    printf("KOU²");
+  }
+
 }
 
 int main(void) {
