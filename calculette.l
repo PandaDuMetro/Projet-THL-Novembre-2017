@@ -22,6 +22,7 @@ atan|Atan|ATAN { return ATAN; }
 sinh|Sinh|SINH { return SINH; }
 cosh|Cosh|COSH { return COSH; }
 tanh|Tanh|TANH { return TANH; }
+plot|Plot|PLOT { return PLOT; }
 
 
 exp|Exp|EXP {return EXP; }
@@ -29,6 +30,7 @@ sqrt|Sqrt|SQRT {return SQRT; }
 cbrt|Cbrt|CBRT {return CBRT; }
 log|Log|LOG {return LOG; }
 abs|Abs|ABS {return ABS; }
+fact|Fact|FACT {return FACT;}
 
 Pi|PI|pi    {  yylval.dval = 3.14159265359; return NUM; }
 [a-zA-Z_][a-zA-Z_0-9]* { strcpy( yylval.sval, yytext); return VAR; }
@@ -38,7 +40,8 @@ plus   { return '+'; }
 fois   { return '*'; }
 moins  { return '-'; }
 sur    { return '/'; }
-\^     {return '^'; }
+egal   { return '='; }
+\^     { return '^'; }
 " "    {}
 .      {  return yytext[0]; }
 

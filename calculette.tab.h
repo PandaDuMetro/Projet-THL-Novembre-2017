@@ -47,20 +47,27 @@ extern int yydebug;
   {
     NUM = 258,
     VAR = 259,
-    TAN = 260,
-    SIN = 261,
-    COS = 262,
-    ACOS = 263,
-    ASIN = 264,
-    ATAN = 265,
-    SINH = 266,
-    COSH = 267,
-    TANH = 268,
-    LOG = 269,
-    SQRT = 270,
-    CBRT = 271,
-    EXP = 272,
-    ABS = 273
+    PLOT = 260,
+    TAN = 261,
+    SIN = 262,
+    COS = 263,
+    ACOS = 264,
+    ASIN = 265,
+    ATAN = 266,
+    SINH = 267,
+    COSH = 268,
+    TANH = 269,
+    LOG = 270,
+    SQRT = 271,
+    CBRT = 272,
+    EXP = 273,
+    ABS = 274,
+    FACT = 275,
+    PLUS = 276,
+    MOINS = 277,
+    FOIS = 278,
+    DIVISE = 279,
+    POW = 280
   };
 #endif
 
@@ -69,12 +76,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 23 "calculette.y" /* yacc.c:1909  */
+#line 29 "calculette.y" /* yacc.c:1909  */
 
   double dval;
   char sval[40];
 
-#line 78 "calculette.tab.h" /* yacc.c:1909  */
+#line 85 "calculette.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
