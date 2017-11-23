@@ -5,12 +5,14 @@
   #include <math.h>    
   #include <map>
   #include <vector>
+  #include <stack>
   #include <string>
   #include <SFML/Window.hpp>
 
   using namespace std;
   extern int yylex ();
   extern char* yytext;
+  extern FILE *yyin;
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -39,10 +41,10 @@
 %type <dval> expr
 %token PLOT
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
-%token PLUS MOINS FOIS DIVISE POW
+%token PLUS MOINS FOIS DIVISE POW FACT
 %left '+' '-'
 %left '*' '/'
-%left '^' '='
+%left '^' '=' '!'
 
 %%
 program: /* empty */    
@@ -50,7 +52,6 @@ program: /* empty */
      ;
 
 line: '\n'       
-  | expr '\n' { printf("\nResult : %g\n", $1); }  
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | PLOT '(' VAR ')' { eval($3);}
     ;
@@ -66,9 +67,11 @@ expr:
      | expr '*' expr     { postfixed.push_back(make_pair(FOIS,0));  }
      | expr '/' expr     { postfixed.push_back(make_pair(DIVISE,0));  }  
      | expr '^' expr     { postfixed.push_back(make_pair(POW,0));  } 
-
+     | expr '!'          { postfixed.push_back(make_pair(FACT,0));}
+ 
      | '(' expr ')'      { $$ = $2;  }
-     | '-' expr          { $$ = -$2;}
+     | '-' expr          { postfixed.push_back(make_pair(NUM,-1));
+                           postfixed.push_back(make_pair(FOIS,0));}
 
 
 
@@ -88,96 +91,121 @@ expr:
      | CBRT '(' expr ')' { if($3> 0) { postfixed.push_back(make_pair(CBRT,0)); } else{ $$=-1; printf("cubic root needs a positive value");}}
      | LOG '(' expr ')'  { if($3> 0) { postfixed.push_back(make_pair(LOG,0)); } else{ $$=-1; printf("Log needs a positive value");}}
      | ABS '(' expr ')'  { postfixed.push_back(make_pair(ABS,0)); }
-     //| FACT '(' expr ')' { if($3>1)  {$$=$3*FACT($3 -1);} else{$$=1; printf("fact(%g) = %g\n",$3, $$)};}
 
 
 
 %%
+int factorial(int x, int result = 1){
+  if (x == 1){ 
+    return result;
+  }else{
+    return factorial(x - 1, x * result);
+    }
+} 
 
-float depiler_operande(int func, int i, string name){
-  float v1 = pile.back();
-  pile.pop_back();
-  float v2;
-  switch (func){
-    case PLUS:
-        v2 = pile.back();
-        pile.pop_back();
-        return(v2+v1);
-      break;
-    case MOINS:
-        v2 = pile.back();
-        pile.pop_back();
-        return(v2-v1);
-      break;
-    case FOIS:
-      v2 = pile.back();
-      pile.pop_back();
-      return(v2*v1);
-      break;
-    case DIVISE:
-      v2 = pile.back();
-      pile.pop_back();
-      return(v2/v1);
-      break;
-    case POW:
-      v2 = pile.back();
-      pile.pop_back();
-      return(pow(v2,v1));
-      break;
-    case ABS:
-      return(sqrt(v1*v1));
-      break;
-    case SIN:
-      return(sin(v1));
-      break;
-    case COS:
-      return(cos(v1));
-      break;
-    case SQRT:
-      return(sqrt(v1));
-      break;
-    case EXP:
-      return(exp(v1));
-      break;
-    case TAN:
-      return(tan(v1));
-      break;
-    case ACOS:
-      return(acos(v1));
-      break;
-    case ASIN:
-      return(asin(v1));
-      break;
-    case ATAN:
-      return(atan(v1));
-      break;
-    case SINH:
-      return(sinh(v1));
-      break;
-    case COSH:
-      return(cosh(v1));
-      break;
-    case TANH:
-      return(tanh(v1));
-      break;
-    case LOG:
-      return(log(v1));
-      break;
-
+double function_eval(vector<pair<int,double> > func_to_eval,double i){
+  stack<double> storage;
+  double temp;
+  for(auto it:func_to_eval){
+    switch(it.first){
+      case NUM:
+        storage.push(it.second);
+        break;
+      case VAR:
+        storage.push(i);
+        break;
+      case PLUS:
+        temp = storage.top();
+        storage.pop();
+        storage.top() += temp;
+        break;
+      case MOINS:
+        temp = storage.top();
+        storage.pop();
+        storage.top() -= temp;
+        break;
+      case FOIS:
+        temp = storage.top();
+        storage.pop();
+        storage.top() *= temp;
+        break;
+      case DIVISE:
+        temp = storage.top();
+        storage.pop();
+        storage.top() /= temp;
+        break;
+      case POW:
+        temp = storage.top();
+        storage.pop();
+        storage.top() = pow(storage.top(),temp);
+        break;
+      case FACT:
+        storage.top() = factorial(storage.top());   
+        break;
+      case SIN:
+        storage.top() = sin(storage.top());
+        break;
+      case ASIN:
+        storage.top() = asin(storage.top());
+        break;
+      case SINH:
+        storage.top() = sinh(storage.top());
+        break;
+      case COS:
+        storage.top() = cos(storage.top());
+        break;
+      case ACOS:
+        storage.top() = acos(storage.top());
+        break;
+      case COSH:
+        storage.top() = cosh(storage.top());
+        break;
+      case TAN:
+        storage.top() = tan(storage.top());
+        break;
+      case ATAN:
+        storage.top() = atan(storage.top());
+        break;
+      case TANH:
+        storage.top() = tanh(storage.top());
+        break;
+      case EXP:
+        storage.top() = exp(storage.top());
+        break;
+      case SQRT:
+        storage.top() = sqrt(storage.top());
+        break;
+      case CBRT:
+        storage.top() = cbrt(storage.top());
+        break;
+      case ABS:
+        storage.top() = abs(storage.top());
+        break;
+      case LOG:
+        storage.top() = log(storage.top());
+        break;
+    }
   }
+  return storage.top();
 }
+
 
 void eval(string fonc){
   if(functions.count(fonc)>0){
-    for(auto i:functions[fonc]){
-      cout << i.first << "|" << i.second << endl ;
+    for(double i=0; i<= 10;i++){
+      cout << "x= " << i << "  y= " <<function_eval(functions[fonc],i) << endl;
     }
+  }else{
+    cout << " no functions entered" << endl;
   }
+
 
 }
 
 int main(void) {
+    yyin = fopen("code.txt","r");
     yyparse();            
+    fclose(yyin);
 
   return 0;
 }

@@ -36,12 +36,14 @@ Pi|PI|pi    {  yylval.dval = 3.14159265359; return NUM; }
 [a-zA-Z_][a-zA-Z_0-9]* { strcpy( yylval.sval, yytext); return VAR; }
 un     {  yylval.dval = 1.; return NUM; }
 \n     {  return '\n'; }
-plus   { return '+'; }
-fois   { return '*'; }
-moins  { return '-'; }
-sur    { return '/'; }
-egal   { return '='; }
+\+   { return '+'; }
+\*   { return '*'; }
+-  { return '-'; }
+\/    { return '/'; }
+\=   { return '='; }
 \^     { return '^'; }
+\! { return '!';}
+
 " "    {}
 .      {  return yytext[0]; }
 
