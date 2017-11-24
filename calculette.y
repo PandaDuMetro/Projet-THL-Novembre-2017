@@ -1,18 +1,11 @@
 %{
-  #include <stdio.h>
-  #include <stdlib.h>
-  #include <iostream>
-  #include <math.h>    
-  #include <map>
-  #include <vector>
-  #include <stack>
-  #include <string>
-  #include <SFML/Window.hpp>
+  #include "link.h"
 
   using namespace std;
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
+  int displayG(vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -41,7 +34,7 @@
 %type <dval> expr
 %token PLOT
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
-%token PLUS MOINS FOIS DIVISE POW FACT
+%token PLUS MOINS FOIS DIVISE POW
 %left '+' '-'
 %left '*' '/'
 %left '^' '=' '!'
@@ -95,7 +88,7 @@ expr:
 
 
 %%
-int factorial(int x, int result = 1){
+int factorial(double x, int result = 1){
   if (x == 1){ 
     return result;
   }else{
@@ -192,9 +185,7 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
 
 void eval(string fonc){
   if(functions.count(fonc)>0){
-    for(double i=0; i<= 10;i++){
-      cout << "x= " << i << "  y= " <<function_eval(functions[fonc],i) << endl;
-    }
+    displayG(functions[fonc]);
   }else{
     cout << " no functions entered" << endl;
   }

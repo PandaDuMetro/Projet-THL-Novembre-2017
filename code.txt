@@ -1,2 +1,2 @@
-f(x) = x*x 
+f(x) = x*x+exp(x*12)
 plot(f)
