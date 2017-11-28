@@ -1,2 +1,2 @@
-f(x) = sqrt(x)
+f(x) = cbrt(x)
 plot(f)

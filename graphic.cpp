@@ -8,14 +8,14 @@ using namespace std;
 #define YMID WINHEI/2
 
 
-int displayG(vector<pair<int,double> > f, int defX = XMID, int defX = YMID)
+int displayG(vector<pair<int,double> > f)
 {
 
     // création de la fenêtre
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
     int ratio = 50;
-    int xOri = defX;
-    int yOri = defY;
+    int xOri = XMID;
+    int yOri = YMID;
     /*sf::Font font;
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;
@@ -32,6 +32,12 @@ int displayG(vector<pair<int,double> > f, int defX = XMID, int defX = YMID)
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed){
+                if (event.key.code == sf::Keyboard::A){
+                    ratio++;
+                }
+                if (event.key.code == sf::Keyboard::Z){
+                    ratio--;
+                }
                 switch(event.key.code){
                     case sf::Keyboard::Add:
                         ratio++;
@@ -112,7 +118,14 @@ int displayG(vector<pair<int,double> > f, int defX = XMID, int defX = YMID)
             }
             window.draw(courbe);
 
-        
+
+            sf::RectangleShape pos;
+            pos.setSize(sf::Vector2f(150,50));
+            pos.setPosition(10, WINHEI - 60);
+            pos.setFillColor(sf::Color::White);
+            pos.setOutlineColor(sf::Color::Black);
+            pos.setOutlineThickness(1);
+            window.draw(pos);
 
         // fin de la frame courante, affichage de tout ce qu'on a dessiné
         window.display();
