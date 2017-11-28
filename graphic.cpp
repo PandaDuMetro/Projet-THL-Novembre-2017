@@ -12,10 +12,6 @@ int displayG(vector<pair<int,double> > f)
 {
 
     // création de la fenêtre
-<<<<<<< HEAD
-    sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Graph");
-    int ratio = 100;
-=======
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
     int ratio = 50;
     int xOri = XMID;
@@ -24,7 +20,6 @@ int displayG(vector<pair<int,double> > f)
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;
     }*/
->>>>>>> f9753e8bab64709844753c72f74c46211d17ae11
 
     // on fait tourner le programme tant que la fenêtre n'a pas été fermée
     while (window.isOpen())
@@ -37,14 +32,12 @@ int displayG(vector<pair<int,double> > f)
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed){
-<<<<<<< HEAD
                 if (event.key.code == sf::Keyboard::A){
                     ratio++;
                 }
                 if (event.key.code == sf::Keyboard::Z){
                     ratio--;
                 }
-=======
                 switch(event.key.code){
                     case sf::Keyboard::Add:
                         ratio++;
@@ -76,7 +69,6 @@ int displayG(vector<pair<int,double> > f)
                         break;
                }     
                 
->>>>>>> f9753e8bab64709844753c72f74c46211d17ae11
             }
         }
         

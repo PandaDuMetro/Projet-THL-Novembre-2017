@@ -70,7 +70,7 @@
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
-  //int displayG(vector<pair<int,double> >);
+  int displayG(vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -1450,25 +1450,25 @@ yyreduce:
 
   case 26:
 #line 82 "calculette.y" /* yacc.c:1646  */
-    { postfixed.push_back(make_pair(EXP,0));}
+    { postfixed.push_back(make_pair(EXP,0)); }
 #line 1455 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
 #line 83 "calculette.y" /* yacc.c:1646  */
-    { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(SQRT,0)); } else{ (yyval.dval)=-1; printf("Square root needs a positive value");}}
+    { postfixed.push_back(make_pair(SQRT,0));}
 #line 1461 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
 #line 84 "calculette.y" /* yacc.c:1646  */
-    { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(CBRT,0)); } else{ (yyval.dval)=-1; printf("cubic root needs a positive value");}}
+    { postfixed.push_back(make_pair(CBRT,0));}
 #line 1467 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
 #line 85 "calculette.y" /* yacc.c:1646  */
-    { postfixed.push_back(make_pair(LOG,0));}
+    { postfixed.push_back(make_pair(LOG,0)); }
 #line 1473 "calculette.tab.c" /* yacc.c:1646  */
     break;
 

@@ -5,7 +5,7 @@
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
-  //int displayG(vector<pair<int,double> >);
+  int displayG(vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -79,10 +79,10 @@ expr:
      | TANH '(' expr ')' { postfixed.push_back(make_pair(TANH,0)); }
 
 
-     | EXP '(' expr ')'  { postfixed.push_back(make_pair(EXP,0));}
-     | SQRT '(' expr ')' { if($3> 0) { postfixed.push_back(make_pair(SQRT,0)); } else{ $$=-1; printf("Square root needs a positive value");}}
-     | CBRT '(' expr ')' { if($3> 0) { postfixed.push_back(make_pair(CBRT,0)); } else{ $$=-1; printf("cubic root needs a positive value");}}
-     | LOG '(' expr ')'  { postfixed.push_back(make_pair(LOG,0));}
+     | EXP '(' expr ')'  { postfixed.push_back(make_pair(EXP,0)); }
+     | SQRT '(' expr ')' { postfixed.push_back(make_pair(SQRT,0));}
+     | CBRT '(' expr ')' { postfixed.push_back(make_pair(CBRT,0));}
+     | LOG '(' expr ')'  { postfixed.push_back(make_pair(LOG,0)); }
      | ABS '(' expr ')'  { postfixed.push_back(make_pair(ABS,0)); }
 
 
