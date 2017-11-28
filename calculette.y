@@ -82,7 +82,7 @@ expr:
      | EXP '(' expr ')'  { postfixed.push_back(make_pair(EXP,0));}
      | SQRT '(' expr ')' { if($3> 0) { postfixed.push_back(make_pair(SQRT,0)); } else{ $$=-1; printf("Square root needs a positive value");}}
      | CBRT '(' expr ')' { if($3> 0) { postfixed.push_back(make_pair(CBRT,0)); } else{ $$=-1; printf("cubic root needs a positive value");}}
-     | LOG '(' expr ')'  { if($3> 0) { postfixed.push_back(make_pair(LOG,0)); } else{ $$=-1; printf("Log needs a positive value");}}
+     | LOG '(' expr ')'  { postfixed.push_back(make_pair(LOG,0));}
      | ABS '(' expr ')'  { postfixed.push_back(make_pair(ABS,0)); }
 
 

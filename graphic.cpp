@@ -12,7 +12,7 @@ int displayG(vector<pair<int,double> > f)
 {
 
     // création de la fenêtre
-    sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Pasti'sen");
+    sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Graph");
     int ratio = 100;
 
     // on fait tourner le programme tant que la fenêtre n'a pas été fermée
@@ -26,10 +26,10 @@ int displayG(vector<pair<int,double> > f)
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed){
-                if (event.key.code == sf::Keyboard::Add){
+                if (event.key.code == sf::Keyboard::A){
                     ratio++;
                 }
-                if (event.key.code == sf::Keyboard::Subtract){
+                if (event.key.code == sf::Keyboard::Z){
                     ratio--;
                 }
             }

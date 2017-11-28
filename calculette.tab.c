@@ -1468,7 +1468,7 @@ yyreduce:
 
   case 29:
 #line 85 "calculette.y" /* yacc.c:1646  */
-    { if((yyvsp[-1].dval)> 0) { postfixed.push_back(make_pair(LOG,0)); } else{ (yyval.dval)=-1; printf("Log needs a positive value");}}
+    { postfixed.push_back(make_pair(LOG,0));}
 #line 1473 "calculette.tab.c" /* yacc.c:1646  */
     break;
 
