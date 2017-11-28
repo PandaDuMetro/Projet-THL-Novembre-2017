@@ -1,2 +1,2 @@
-f(x) = log(x)
+f(x) = sqrt(x)
 plot(f)

@@ -8,14 +8,14 @@ using namespace std;
 #define YMID WINHEI/2
 
 
-int displayG(vector<pair<int,double> > f)
+int displayG(vector<pair<int,double> > f, int defX = XMID, int defX = YMID)
 {
 
     // création de la fenêtre
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
     int ratio = 50;
-    int xOri = XMID;
-    int yOri = YMID;
+    int xOri = defX;
+    int yOri = defY;
     /*sf::Font font;
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;
@@ -111,7 +111,6 @@ int displayG(vector<pair<int,double> > f)
                 courbe[i].color = sf::Color::Green;
             }
             window.draw(courbe);
-
 
         
 
