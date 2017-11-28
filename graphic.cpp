@@ -8,14 +8,23 @@ using namespace std;
 #define YMID WINHEI/2
 
 
-int displayG(vector<pair<int,double> > f)
+int displayG(vector<pair<int,double> > f, double xmin, double xmax)
 {
 
     // création de la fenêtre
+
+    double ratio;
+    int xOri;
+    int yOri=YMID;
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
-    int ratio = 50;
-    int xOri = XMID;
-    int yOri = YMID;
+    if(xmin == xmax){
+        ratio = 50;
+        xOri = XMID;
+    }
+    else{
+        ratio = 800/(xmax-xmin);
+        xOri = -xmin*ratio;
+    }
     /*sf::Font font;
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;

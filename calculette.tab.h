@@ -67,7 +67,8 @@ extern int yydebug;
     MOINS = 277,
     FOIS = 278,
     DIVISE = 279,
-    POW = 280
+    POW = 280,
+    COMP = 281
   };
 #endif
 
@@ -76,12 +77,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 27 "calculette.y" /* yacc.c:1909  */
+#line 29 "calculette.y" /* yacc.c:1909  */
 
   double dval;
   char sval[40];
 
-#line 85 "calculette.tab.h" /* yacc.c:1909  */
+#line 86 "calculette.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

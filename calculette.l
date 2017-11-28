@@ -35,7 +35,9 @@ fact|Fact|FACT {return FACT;}
 Pi|PI|pi    {  yylval.dval = 3.14159265359; return NUM; }
 [a-zA-Z_][a-zA-Z_0-9]* { strcpy( yylval.sval, yytext); return VAR; }
 un     {  yylval.dval = 1.; return NUM; }
+
 \n     {  return '\n'; }
+i|I { return COMP; }
 \+   { return '+'; }
 \*   { return '*'; }
 -  { return '-'; }
@@ -43,6 +45,9 @@ un     {  yylval.dval = 1.; return NUM; }
 \=   { return '='; }
 \^     { return '^'; }
 \! { return '!';}
+\[ { return '[';}
+\] { return ']';}
+\, { return ',';}
 
 " "    {}
 .      {  return yytext[0]; }
