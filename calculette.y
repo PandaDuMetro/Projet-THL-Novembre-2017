@@ -20,6 +20,8 @@
   vector<pair<int,double> > postfixed;
   map<string, vector<pair<int,double> > > functions;
   vector<float> pile;
+  double xmin ;
+  double xmax;
 
 %}
 
@@ -34,10 +36,11 @@
 %type <dval> expr
 %token PLOT
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
-%token PLUS MOINS FOIS DIVISE POW
+%token PLUS MOINS FOIS DIVISE POW COMP
 %left '+' '-'
 %left '*' '/'
 %left '^' '=' '!'
+%left '[' ']' ','
 
 %%
 program: /* empty */    
@@ -46,6 +49,7 @@ program: /* empty */
 
 line: '\n'       
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
+  | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
   | PLOT '(' VAR ')' { eval($3);}
     ;
   
@@ -65,6 +69,8 @@ expr:
      | '(' expr ')'      { $$ = $2;  }
      | '-' expr          { postfixed.push_back(make_pair(NUM,-1));
                            postfixed.push_back(make_pair(FOIS,0));}
+
+     /*| expr COMP         { postfixed.push_back(make_pair(COMP,0));}*/
 
 
 
@@ -177,6 +183,9 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
       case LOG:
         storage.top() = log(storage.top());
         break;
+      /*case COMP:
+        storage.top() = storage.top()i;
+        break;*/
     }
   }
   return storage.top();
