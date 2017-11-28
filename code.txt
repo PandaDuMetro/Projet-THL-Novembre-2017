@@ -1,5 +1,6 @@
 
 f(x) = 1+x
+g(x) = 1/x
 [10,15]
-plot(f)
+plot(f,g)
 

@@ -8,7 +8,7 @@ using namespace std;
 #define YMID WINHEI/2
 
 
-int displayG(vector<pair<int,double> > f)
+int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
 {
 
     // création de la fenêtre
@@ -116,7 +116,17 @@ int displayG(vector<pair<int,double> > f)
                 courbe[i].position = sf::Vector2f(i ,yOri - yA);
                 courbe[i].color = sf::Color::Green;
             }
+             window.draw(courbe);
+
+            for(int i=0; i<WINLEN;i++){
+                double x = (i-xOri)/(ratio*1.);
+                double y = function_eval(g,x);
+                int yA = y*ratio;
+                courbe[i].position = sf::Vector2f(i ,yOri - yA);
+                courbe[i].color = sf::Color::Blue;
+            }
             window.draw(courbe);
+
 
 
         

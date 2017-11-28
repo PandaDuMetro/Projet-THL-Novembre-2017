@@ -5,7 +5,7 @@
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
-  int displayG(vector<pair<int,double> >);
+  int displayG(vector<pair<int,double> >,vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -50,7 +50,7 @@ program: /* empty */
 line: '\n'       
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
-  | PLOT '(' VAR ')' { eval($3);}
+  | PLOT '(' VAR ',' VAR ')' { eval($3,$5);}
     ;
   
 
@@ -192,9 +192,9 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
 }
 
 
-void eval(string fonc){
+void eval(string fonc,string fonc1){
   if(functions.count(fonc)>0){
-    displayG(functions[fonc]);
+    displayG(functions[fonc],functions[fonc1]);
   }else{
     cout << " no functions entered" << endl;
   }
