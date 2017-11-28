@@ -12,8 +12,19 @@ int displayG(vector<pair<int,double> > f)
 {
 
     // création de la fenêtre
+<<<<<<< HEAD
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Graph");
     int ratio = 100;
+=======
+    sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
+    int ratio = 50;
+    int xOri = XMID;
+    int yOri = YMID;
+    /*sf::Font font;
+    if(!font.loadFromFile("extrabold.ttf")){
+        cerr<<"no font file found"<<endl;
+    }*/
+>>>>>>> f9753e8bab64709844753c72f74c46211d17ae11
 
     // on fait tourner le programme tant que la fenêtre n'a pas été fermée
     while (window.isOpen())
@@ -26,43 +37,96 @@ int displayG(vector<pair<int,double> > f)
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed){
+<<<<<<< HEAD
                 if (event.key.code == sf::Keyboard::A){
                     ratio++;
                 }
                 if (event.key.code == sf::Keyboard::Z){
                     ratio--;
                 }
+=======
+                switch(event.key.code){
+                    case sf::Keyboard::Add:
+                        ratio++;
+                        break;
+                    case sf::Keyboard::Equal:
+                        ratio++;
+                        break;
+                    case sf::Keyboard::Subtract:
+                        if(ratio <= 1){break;}
+                        ratio--;
+                        break;
+                    case sf::Keyboard::Dash:
+                        if(ratio <= 1){break;}
+                        ratio--;
+                        break;
+                    case sf::Keyboard::Left:
+                        xOri--;
+                        break;
+                    case sf::Keyboard::Right:
+                        xOri++;
+                        break;
+                    case sf::Keyboard::Up:
+                        yOri--;
+                        break;
+                    case sf::Keyboard::Down:
+                        yOri++;
+                        break;
+                    default :
+                        break;
+               }     
+                
+>>>>>>> f9753e8bab64709844753c72f74c46211d17ae11
             }
         }
-
+        
         // effacement de la fenêtre en noir
             window.clear(sf::Color::White);
 
             sf::VertexArray axes(sf::Lines, 4);
-            axes[0].position = sf::Vector2f(XMID, 0);
-            axes[1].position = sf::Vector2f(XMID, WINHEI);
-            axes[2].position = sf::Vector2f(0, YMID);
-            axes[3].position = sf::Vector2f(WINLEN, YMID);
+            axes[0].position = sf::Vector2f(xOri, 0);
+            axes[1].position = sf::Vector2f(xOri, WINHEI);
+            axes[2].position = sf::Vector2f(0, yOri);
+            axes[3].position = sf::Vector2f(WINLEN, yOri);
 
             axes[0].color = sf::Color::Red;
             axes[1].color = sf::Color::Red;
             axes[2].color = sf::Color::Red;
             axes[3].color = sf::Color::Red;
             window.draw(axes);
-            int xOri = XMID;
-            int yOri = YMID; 
+             
+            sf::VertexArray grads(sf::Lines, 2);
 
-
+            for (int i=0;i<WINLEN;i++){
+                double y = (yOri-i)/(ratio*1.);
+                double x = (i-xOri)/(ratio*1.);
+                if(y== (int)y){
+                    grads[0].position = sf::Vector2f(xOri-1, i);
+                    grads[1].position = sf::Vector2f(xOri-5, i);
+                    grads[0].color = sf::Color::Red;
+                    grads[1].color = sf::Color::Red;
+                    window.draw(grads);
+                }
+                if(x== (int)x){
+                    grads[0].position = sf::Vector2f(i, yOri+1);
+                    grads[1].position = sf::Vector2f(i, yOri+5);
+                    grads[0].color = sf::Color::Red;
+                    grads[1].color = sf::Color::Red;
+                    window.draw(grads);
+                }
+            }
+            
            sf::VertexArray courbe(sf::LinesStrip, WINLEN);
             for(int i=0; i<WINLEN;i++){
-                float x = (i-XMID)/(ratio*1.);
-                float y = function_eval(f,x);
+                double x = (i-xOri)/(ratio*1.);
+                double y = function_eval(f,x);
                 int yA = y*ratio;
-                std::cout<<"x = "<<x<<"  y = "<<y<<std::endl;
-                courbe[i].position = sf::Vector2f(i ,YMID - yA);
+                courbe[i].position = sf::Vector2f(i ,yOri - yA);
                 courbe[i].color = sf::Color::Green;
             }
             window.draw(courbe);
+
+
         
 
         // fin de la frame courante, affichage de tout ce qu'on a dessiné
