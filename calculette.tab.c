@@ -70,7 +70,7 @@
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
-  int displayG(vector<pair<int,double> >);
+  //int displayG(vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
