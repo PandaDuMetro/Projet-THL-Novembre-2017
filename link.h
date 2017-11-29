@@ -12,9 +12,8 @@
 
 int factorial(double, int);
 
-int displayG(std::vector<std::vector<std::pair<int,double> > >);
-//int displayG(std::vector<std::pair<int,double> >,std::vector<std::pair<int,double> >);
+int displayG(std::vector<std::vector<std::pair<int,double> > >, int, int);
 
-//sf::VertexArray plot(std::vector<std::pair<int,double> >, int, int, int);
 double function_eval(std::vector<std::pair<int,double> >,double);
+
 void eval(std::string, std::string);

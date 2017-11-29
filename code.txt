@@ -1,7 +1,8 @@
 f(x) = sin(x)
 g(x) = cos(x)
-// h(x) = x^2
+h(x) = x^2
 plot(f)
 plot(g)
 //plot(h)
+[-20,20]
 display
