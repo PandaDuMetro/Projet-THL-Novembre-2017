@@ -199,7 +199,7 @@ void eval(string fonc){
   if(functions.count(fonc)>0){
     plots.push_back(functions[fonc]);
   }else{
-    cout << " no functions entered" << endl;
+    cout << " no function entered" << endl;
   }
 
 
