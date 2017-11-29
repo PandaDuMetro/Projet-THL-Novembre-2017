@@ -55,30 +55,30 @@ int displayG(vector<vector<pair<int,double> > > funcs)
             if (event.type == sf::Event::KeyPressed){
                 switch(event.key.code){
                     case sf::Keyboard::Add:
-                        ratio++;
+                        ratio+=2;
                         break;
                     case sf::Keyboard::Equal:
-                        ratio++;
+                        ratio+=2;
                         break;
                     case sf::Keyboard::Subtract:
                         if(ratio <= 1){break;}
-                        ratio--;
+                        ratio-=2;
                         break;
                     case sf::Keyboard::Dash:
                         if(ratio <= 1){break;}
-                        ratio--;
+                        ratio-=2;
                         break;
                     case sf::Keyboard::Left:
-                        xOri--;
+                        xOri-=2;
                         break;
                     case sf::Keyboard::Right:
-                        xOri++;
+                        xOri+=2;
                         break;
                     case sf::Keyboard::Up:
-                        yOri--;
+                        yOri-=2;
                         break;
                     case sf::Keyboard::Down:
-                        yOri++;
+                        yOri+=2;
                         break;
                     case sf::Keyboard::A:
                         air = !air;

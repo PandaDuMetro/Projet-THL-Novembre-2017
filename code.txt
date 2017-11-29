@@ -1,7 +1,7 @@
-f(x) = exp(x)
-g(x) = 1/x
-h(x) = sin(x)
+f(x) = sin(x)
+g(x) = cos(x)
+// h(x) = x^2
 plot(f)
 plot(g)
-plot(h)
+//plot(h)
 display

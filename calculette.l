@@ -45,10 +45,12 @@ i|I { return COMP; }
 \/    { return '/'; }
 \=   { return '='; }
 \^     { return '^'; }
+\% { return '%';}
 \! { return '!';}
 \[ { return '[';}
 \] { return ']';}
 \, { return ',';}
+\/\/(.*) { return COM ;}
 
 " "    {}
 .      {  return yytext[0]; }

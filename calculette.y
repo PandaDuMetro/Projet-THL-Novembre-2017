@@ -35,12 +35,12 @@
 %token <dval> NUM
 %token <sval> VAR 
 %type <dval> expr
-%token PLOT DISPLAY
+%token PLOT DISPLAY COM
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
-%token PLUS MOINS FOIS DIVISE POW COMP
+%token PLUS MOINS FOIS DIVISE POW COMP MOD
 %left '+' '-'
 %left '*' '/'
-%left '^' '=' '!'
+%left '^' '=' '!' '%'
 %left '[' ']' ','
 
 %%
@@ -51,6 +51,7 @@ program: /* empty */
 line: '\n'       
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
+  | COM {}
   | PLOT '(' VAR ')' { eval($3);}
   | DISPLAY {displayG(plots);}
     ;
@@ -67,6 +68,7 @@ expr:
      | expr '/' expr     { postfixed.push_back(make_pair(DIVISE,0));  }  
      | expr '^' expr     { postfixed.push_back(make_pair(POW,0));  } 
      | expr '!'          { postfixed.push_back(make_pair(FACT,0));}
+     | expr '%' expr     { postfixed.push_back(make_pair(MOD,0));}
  
      | '(' expr ')'      { $$ = $2;  }
      | '-' expr          { postfixed.push_back(make_pair(NUM,-1));
@@ -186,7 +188,7 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
         storage.top() = log(storage.top());
         break;
       /*case COMP:
-        storage.top() = storage.top()i;
+        storage.top() = storage.top()*1.0i;
         break;*/
     }
   }
@@ -197,7 +199,7 @@ void eval(string fonc){
   if(functions.count(fonc)>0){
     plots.push_back(functions[fonc]);
   }else{
-    cout << " no functions entered" << endl;
+    cout << " no function entered" << endl;
   }
 
 
