@@ -1836,8 +1836,5 @@ int main(void) {
     yyin = fopen("code.txt","r");
     yyparse();            
     fclose(yyin);
-    /*if(plots.size() < 0){
-      displayG(plots);
-    }*/
   return 0;
 }
