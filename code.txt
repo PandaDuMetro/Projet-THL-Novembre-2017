@@ -1,5 +1,5 @@
 f(x) = exp(x)
-g(x) = 1/x
+g(x) = 6!*x^2
 //h(x) = x^2
 plot(f)
 plot(g)

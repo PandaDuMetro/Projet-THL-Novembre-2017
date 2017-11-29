@@ -45,6 +45,7 @@ i|I { return COMP; }
 \/    { return '/'; }
 \=   { return '='; }
 \^     { return '^'; }
+\% { return '%';}
 \! { return '!';}
 \[ { return '[';}
 \] { return ']';}

@@ -40,4 +40,8 @@ Les éléments utilisables pour construire une fonction sont :
 	L'utilisation des complexes n'est pas possible a cause de la manière dont est renvoyé un nombre complexe en C++
 
 
+Une fois sur le graphique on peut utiliser les touches 6(-) ou =(+) pour zoomer et dézoomer
+Et les touches directionnels pour déplace le graph
+
+
 

@@ -37,10 +37,10 @@
 %type <dval> expr
 %token PLOT DISPLAY COM
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
-%token PLUS MOINS FOIS DIVISE POW COMP
+%token PLUS MOINS FOIS DIVISE POW COMP MOD
 %left '+' '-'
 %left '*' '/'
-%left '^' '=' '!'
+%left '^' '=' '!' '%'
 %left '[' ']' ','
 
 %%
@@ -68,6 +68,7 @@ expr:
      | expr '/' expr     { postfixed.push_back(make_pair(DIVISE,0));  }  
      | expr '^' expr     { postfixed.push_back(make_pair(POW,0));  } 
      | expr '!'          { postfixed.push_back(make_pair(FACT,0));}
+     | expr '%' expr     { postfixed.push_back(make_pair(MOD,0));}
  
      | '(' expr ')'      { $$ = $2;  }
      | '-' expr          { postfixed.push_back(make_pair(NUM,-1));

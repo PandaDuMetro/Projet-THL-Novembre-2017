@@ -70,7 +70,8 @@ extern int yydebug;
     FOIS = 280,
     DIVISE = 281,
     POW = 282,
-    COMP = 283
+    COMP = 283,
+    MOD = 284
   };
 #endif
 
@@ -84,7 +85,7 @@ union YYSTYPE
   double dval;
   char sval[40];
 
-#line 88 "calculette.tab.h" /* yacc.c:1909  */
+#line 89 "calculette.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
