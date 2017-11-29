@@ -1,3 +1,7 @@
-f(x) = 1+x
-[0,0]
+f(x) = exp(x)
+g(x) = 1/x
+h(x) = sin(x)
 plot(f)
+plot(g)
+plot(h)
+display

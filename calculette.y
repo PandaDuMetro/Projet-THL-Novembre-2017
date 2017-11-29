@@ -5,7 +5,7 @@
   extern int yylex ();
   extern char* yytext;
   extern FILE *yyin;
-  int displayG(vector<pair<int,double> >);
+  int displayG(vector<pair<int,double> >,vector<pair<int,double> >);
 
   int yyerror(char *s)
   { printf("%s\n", s); }
@@ -20,6 +20,7 @@
   vector<pair<int,double> > postfixed;
   map<string, vector<pair<int,double> > > functions;
   vector<float> pile;
+  vector<vector<pair<int,double> > > plots;
   double xmin;
   double xmax;
 
@@ -34,7 +35,7 @@
 %token <dval> NUM
 %token <sval> VAR 
 %type <dval> expr
-%token PLOT
+%token PLOT DISPLAY
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
 %token PLUS MOINS FOIS DIVISE POW COMP
 %left '+' '-'
@@ -51,6 +52,7 @@ line: '\n'
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
   | PLOT '(' VAR ')' { eval($3);}
+  | DISPLAY {displayG(plots);}
     ;
   
 
@@ -193,7 +195,7 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
 
 void eval(string fonc){
   if(functions.count(fonc)>0){
-    displayG(functions[fonc], xmin, xmax);
+    plots.push_back(functions[fonc]);
   }else{
     cout << " no functions entered" << endl;
   }
@@ -205,6 +207,5 @@ int main(void) {
     yyin = fopen("code.txt","r");
     yyparse();            
     fclose(yyin);
-
   return 0;
 }
