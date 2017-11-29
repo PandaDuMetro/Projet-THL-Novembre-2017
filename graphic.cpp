@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-int displayG(vector<vector<pair<int,double> > > funcs)
+int displayG(vector<vector<pair<int,double> > > funcs, int xmin, int xmax)
 
 {
 
@@ -29,7 +29,7 @@ int displayG(vector<vector<pair<int,double> > > funcs)
     colors[5] = sf::Color::Cyan;
     colors[6] = sf::Color::Red;
 
-    /*if(xmin == xmax){
+    if(xmin == xmax){
         ratio = 50;
         xOri = XMID;
     }
@@ -37,7 +37,7 @@ int displayG(vector<vector<pair<int,double> > > funcs)
         ratio = 800/(xmax-xmin);
         xOri = -xmin*ratio;
     }
-    sf::Font font;
+    /*sf::Font font;
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;
     }*/

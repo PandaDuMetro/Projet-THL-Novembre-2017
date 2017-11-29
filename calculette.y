@@ -51,9 +51,11 @@ program: /* empty */
 line: '\n'       
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
+  | '[' '-' NUM ',' NUM ']' {xmin = - $3,xmax = $5;}
+  | '[' '-' NUM ',' '-' NUM ']' {xmin = - $3,xmax = - $6;}
   | COM {}
   | PLOT '(' VAR ')' { eval($3);}
-  | DISPLAY {displayG(plots);}
+  | DISPLAY {displayG(plots, xmin, xmax);}
     ;
   
 
