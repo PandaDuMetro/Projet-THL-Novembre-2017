@@ -187,7 +187,7 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
         storage.top() = log(storage.top());
         break;
       /*case COMP:
-        storage.top() = storage.top()i;
+        storage.top() = storage.top()*1.0i;
         break;*/
     }
   }

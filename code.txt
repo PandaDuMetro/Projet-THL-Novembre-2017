@@ -1,6 +1,6 @@
 f(x) = exp(x)
 g(x) = 1/x
-//h(x) = sin(x)
+//h(x) = x^2
 plot(f)
 plot(g)
 plot(h)
