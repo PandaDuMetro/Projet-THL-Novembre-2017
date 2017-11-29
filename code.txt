@@ -1,6 +1,6 @@
 
-f(x) = 1+x
-g(x) = 1/x
+f(x) = cos(x)
+g(x) = sin(x)
 [10,15]
 plot(f,g)
 
