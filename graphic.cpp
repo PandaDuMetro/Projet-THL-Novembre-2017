@@ -8,14 +8,27 @@ using namespace std;
 #define YMID WINHEI/2
 
 
-int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
+
+int displayG(vector<vector<pair<int,double> > > funcs)
+
+//int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
+
 {
 
     // création de la fenêtre
+
+    int ratio=50;
+    int xOri=XMID;
+    int yOri=YMID;
     sf::RenderWindow window(sf::VideoMode(WINLEN, WINHEI), "Projet THL");
-    int ratio = 50;
-    int xOri = XMID;
-    int yOri = YMID;
+    /*if(xmin == xmax){
+        ratio = 50;
+        xOri = XMID;
+    }
+    else{
+        ratio = 800/(xmax-xmin);
+        xOri = -xmin*ratio;
+    }*/
     /*sf::Font font;
     if(!font.loadFromFile("extrabold.ttf")){
         cerr<<"no font file found"<<endl;
@@ -86,6 +99,10 @@ int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
             axes[2].color = sf::Color::Red;
             axes[3].color = sf::Color::Red;
             window.draw(axes);
+
+            for (auto f : funcs){
+                window.draw(plot(f, xOri, yOri, ratio));
+            }
              
             sf::VertexArray grads(sf::Lines, 2);
 
@@ -108,7 +125,25 @@ int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
                 }
             }
             
-           sf::VertexArray courbe(sf::LinesStrip, WINLEN);
+           
+
+            /*sf::RectangleShape pos;
+            pos.setSize(sf::Vector2f(150,50));
+            pos.setPosition(10, WINHEI - 60);
+            pos.setFillColor(sf::Color::White);
+            pos.setOutlineColor(sf::Color::Black);
+            pos.setOutlineThickness(1);
+            window.draw(pos);*/
+
+        // fin de la frame courante, affichage de tout ce qu'on a dessiné
+        window.display();
+    }
+
+    return 0;
+}
+
+sf::VertexArray plot(vector<pair<int,double> > f, int xOri, int yOri,int ratio){
+    sf::VertexArray courbe(sf::LinesStrip, WINLEN);
             for(int i=0; i<WINLEN;i++){
                 double x = (i-xOri)/(ratio*1.);
                 double y = function_eval(f,x);
@@ -116,24 +151,5 @@ int displayG(vector<pair<int,double> > f, vector<pair<int,double> > g)
                 courbe[i].position = sf::Vector2f(i ,yOri - yA);
                 courbe[i].color = sf::Color::Green;
             }
-             window.draw(courbe);
-
-            for(int i=0; i<WINLEN;i++){
-                double x = (i-xOri)/(ratio*1.);
-                double y = function_eval(g,x);
-                int yA = y*ratio;
-                courbe[i].position = sf::Vector2f(i ,yOri - yA);
-                courbe[i].color = sf::Color::Blue;
-            }
-            window.draw(courbe);
-
-
-
-        
-
-        // fin de la frame courante, affichage de tout ce qu'on a dessiné
-        window.display();
-    }
-
-    return 0;
+    return courbe;
 }

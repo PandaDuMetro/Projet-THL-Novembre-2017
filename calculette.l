@@ -23,6 +23,7 @@ sinh|Sinh|SINH { return SINH; }
 cosh|Cosh|COSH { return COSH; }
 tanh|Tanh|TANH { return TANH; }
 plot|Plot|PLOT { return PLOT; }
+display|Display|DISPLAY { return DISPLAY; }
 
 
 exp|Exp|EXP {return EXP; }
@@ -48,6 +49,7 @@ i|I { return COMP; }
 \[ { return '[';}
 \] { return ']';}
 \, { return ',';}
+\/\/(.*) { return COM ;}
 
 " "    {}
 .      {  return yytext[0]; }

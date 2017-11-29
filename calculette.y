@@ -20,7 +20,8 @@
   vector<pair<int,double> > postfixed;
   map<string, vector<pair<int,double> > > functions;
   vector<float> pile;
-  double xmin ;
+  vector<vector<pair<int,double> > > plots;
+  double xmin;
   double xmax;
 
 %}
@@ -34,7 +35,7 @@
 %token <dval> NUM
 %token <sval> VAR 
 %type <dval> expr
-%token PLOT
+%token PLOT DISPLAY COM
 %token TAN SIN COS ACOS ASIN ATAN SINH COSH TANH LOG SQRT CBRT EXP ABS FACT
 %token PLUS MOINS FOIS DIVISE POW COMP
 %left '+' '-'
@@ -50,7 +51,9 @@ program: /* empty */
 line: '\n'       
   | VAR '('VAR')' '=' expr {functions[$1] = postfixed; postfixed.clear();}
   | '[' NUM ',' NUM ']' {xmin = $2,xmax = $4;}
-  | PLOT '(' VAR ',' VAR ')' { eval($3,$5);}
+  | COM {}
+  | PLOT '(' VAR ')' { eval($3);}
+  | DISPLAY {displayG(plots);}
     ;
   
 
@@ -191,10 +194,9 @@ double function_eval(vector<pair<int,double> > func_to_eval,double i){
   return storage.top();
 }
 
-
-void eval(string fonc,string fonc1){
+void eval(string fonc){
   if(functions.count(fonc)>0){
-    displayG(functions[fonc],functions[fonc1]);
+    plots.push_back(functions[fonc]);
   }else{
     cout << " no functions entered" << endl;
   }
@@ -206,6 +208,5 @@ int main(void) {
     yyin = fopen("code.txt","r");
     yyparse();            
     fclose(yyin);
-
   return 0;
 }

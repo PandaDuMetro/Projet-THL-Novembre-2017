@@ -1,6 +1,7 @@
-
-f(x) = cos(x)
-g(x) = sin(x)
-[10,15]
-plot(f,g)
-
+f(x) = exp(x)
+g(x) = 1/x
+//h(x) = sin(x)
+plot(f)
+plot(g)
+plot(h)
+display
